@@ -1,0 +1,12 @@
+{
+	admin 0.0.0.0:2019
+}
+
+:80 {
+	handle /beta* {
+		reverse_proxy upstream-beta:5679
+	}
+	handle {
+		respond "Caddy Secondary Instance Ready" 200
+	}
+}
