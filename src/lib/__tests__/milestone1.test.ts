@@ -3,6 +3,7 @@ import crypto from "crypto";
 import { eq } from "drizzle-orm";
 import { encryptSecret, decryptSecret } from "@/lib/crypto";
 import { signSessionToken, verifySessionToken } from "@/lib/auth-jwt";
+import { formatTimestamp } from "@/lib/utils";
 import { getDb } from "@/db";
 import { users } from "@/db/schema";
 
@@ -74,5 +75,12 @@ describe("SQLite & Drizzle Schema", () => {
     expect(found).toBeDefined();
     expect(found?.username).toBe("admin");
     expect(found?.role).toBe("admin");
+  });
+
+  it("formats Date, number, and ISO string timestamps safely", () => {
+    const d = new Date("2026-11-06T16:57:00.000Z");
+    expect(formatTimestamp(d)).toBe("2026-11-06 16:57:00 UTC");
+    expect(formatTimestamp(d.getTime())).toBe("2026-11-06 16:57:00 UTC");
+    expect(formatTimestamp(d.toISOString())).toBe("2026-11-06 16:57:00 UTC");
   });
 });
