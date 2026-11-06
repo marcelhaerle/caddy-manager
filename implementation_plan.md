@@ -103,7 +103,17 @@ To make the UI intuitive while preserving full compatibility with existing Caddy
 
 ---
 
-## 5. Development Milestones & Roadmap
+## 5. UI / UX Design Direction ("Sleek Tech Nerd" Aesthetic)
+
+The interface is designed for developers, sysadmins, and homelab/infrastructure engineers—prioritizing **precision, dark-mode aesthetics, monospace clarity, and zero bloat**:
+- **Dark-First Terminal & Telemetry Vibe**: Deep `zinc-950` canvas, subtle glassmorphic panels (`zinc-900/60`), hairline `zinc-800` borders, and neon-accented status indicators (Emerald for active upstreams/TLS, Cyan for Caddy routes, Amber for config drift, Rose for errors).
+- **Monospace Technical Primitives**: Every hostname, upstream dial address (`10.0.0.5:8080`), listen port (`:443`), config hash (`a8f9c2d`), and revision badge (`#0012`) is rendered in a crisp monospace font (`Geist Mono` / `JetBrains Mono`).
+- **Live JSON Transparency**: Visual forms (like the Reverse Proxy builder) include a live, collapsible JSON preview pane so engineers always see the exact Caddy JSON payload being generated before applying it.
+- **Keyboard-Centric Navigation**: Quick instance switcher, instant search/filtering across routes and audit logs, and IDE-grade Monaco Editor integration.
+
+---
+
+## 6. Development Milestones & Roadmap
 
 ### Milestone 1: Project Initialization, Database & Authentication
 - **1.1. Scaffold Next.js App**: Initialize Next.js (TypeScript, Tailwind CSS, App Router, `src/` directory) and configure UI components.

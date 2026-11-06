@@ -74,3 +74,21 @@ Before declaring a feature branch complete or asking the user to merge to `main`
 4. **Secrets & Environment**:
    - Encrypt Caddy instance credentials (`encrypted_auth_secret`) at rest in SQLite using AES-256-GCM with `process.env.ENCRYPTION_KEY`.
    - Never commit `.env`, `*.db`, `*.sqlite`, or secret keys to Git. Always keep `.env.example` updated when adding new environment variables.
+
+---
+
+## 4. UI / UX Design System ("Tech Nerd" Developer Aesthetic)
+
+The UI must feel **modern, sleek, high-density, and purpose-built for infrastructure engineers and tech nerds** (inspired by Vercel, Linear, Cloudflare, and Raycast):
+
+1. **Dark-First, High-Contrast Palette**:
+   - Deep obsidian/slate backgrounds (`#090a0f` / `zinc-950`), subtle elevated surfaces (`zinc-900/70` with `backdrop-blur`), and crisp `1px` borders (`border-zinc-800/80` with subtle cyan/emerald glow on active states).
+   - Semantic status indicators with glowing dot badges (`emerald` for online/applied, `amber` for drift/warning, `rose` for offline/failed, `cyan` for Caddy-managed resources).
+2. **Typography & Monospace Precision**:
+   - Clean geometric sans-serif (`Geist` or `Inter`) for UI chrome paired with a sharp monospace font (`JetBrains Mono` or `Geist Mono`) for **all** technical primitives: domains, upstream `ip:port` targets, ports, HTTP methods, SHA hashes, revision numbers (`rev #14`), timestamps, and JSON paths.
+3. **Information Density & Telemetry Feel**:
+   - Compact, scannable tables and cards showing real-time telemetry at a glance (e.g., `app.example.com → 10.0.0.5:8080`, TLS badge, latency/status, `@id` tag) without wasted whitespace.
+   - Inline copy-to-clipboard buttons for URLs, `@id` tags, config hashes, and JSON snippets.
+4. **Power-User Ergonomics**:
+   - Keyboard-friendly workflows (e.g., `Cmd/Ctrl + K` command palette / quick instance switcher, `Cmd/Ctrl + S` in the raw editor).
+   - Split-pane previews (e.g., live Caddy JSON preview while filling out the visual Reverse Proxy form) and side-by-side Monaco diff views with dark syntax highlighting.

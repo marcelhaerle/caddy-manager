@@ -14,6 +14,7 @@ A centralized web management UI for controlling, inspecting, and auditing one or
 - **Full Audit Log & One-Click Rollback**: Track every change (who, when, summary, and before/after JSON diff) and revert any instance to a previous configuration snapshot atomically via `POST /load`.
 - **Drift Detection**: Automatically detect out-of-band changes made directly on a Caddy instance and sync them to the audit history.
 - **Role-Based Access Control**: Single primary `admin` account that can create and manage non-admin users (`editor` and `viewer` roles).
+- **Sleek Developer-First UI**: Dark-mode-first, high-density interface with monospace technical telemetry, live JSON payload previews, and IDE-grade diff views designed for infrastructure nerds.
 
 ## Technology Stack
 
