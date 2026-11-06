@@ -60,6 +60,45 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser. On first launch, you will be prompted to create the initial **Admin** account.
 
+## Development Workflow
+
+This project uses a **Feature-Branch Workflow** where `main` always remains in a clean, buildable, and releasable state.
+
+### 1. Branch Naming Convention
+
+All work must be done in dedicated short-lived branches created from `main`:
+
+- `feat/<milestone-or-feature>` — New features or milestone implementations (e.g., `feat/m1-project-setup`, `feat/m1-auth-system`, `feat/m2-instance-crud`)
+- `fix/<issue-description>` — Bug fixes (e.g., `fix/caddy-load-timeout`)
+- `refactor/<scope>` — Code restructuring without behavior changes
+- `docs/<scope>` — Documentation updates (e.g., `docs/workflow-and-agents`)
+- `chore/<scope>` — Build, tooling, dependencies, or Docker configuration
+
+### 2. Step-by-Step Workflow
+
+1. **Sync `main` and create a feature branch**:
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b feat/<branch-name>
+   ```
+2. **Develop & Commit**:
+   Write focused, incremental commits following [Conventional Commits](https://www.conventionalcommits.org/):
+   - `feat(auth): implement initial admin setup and JWT session login`
+   - `feat(caddy): add CaddyClient for GET /config/ and POST /load`
+   - `fix(audit): handle empty config state on initial sync`
+   - `test(crypto): add unit tests for AES-256-GCM secret encryption`
+3. **Verify Quality Gates Before Merging**:
+   ```bash
+   npm run lint
+   npm run test
+   npm run build
+   ```
+4. **Merge / Pull Request**:
+   Push the feature branch to `origin` and merge into `main` via Pull Request (or `--no-ff` merge after review) once all checks pass.
+
+For AI coding assistants and automated contributors, see [AGENTS.md](./AGENTS.md) for strict repository rules and workflow instructions.
+
 ## Project Roadmap
 
 See [implementation_plan.md](./implementation_plan.md) for the complete architecture, database schema, and development milestones:
