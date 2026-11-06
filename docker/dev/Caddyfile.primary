@@ -1,0 +1,12 @@
+{
+	admin 0.0.0.0:2019
+}
+
+:80 {
+	handle /alpha* {
+		reverse_proxy upstream-alpha:5678
+	}
+	handle {
+		respond "Caddy Primary Instance Ready" 200
+	}
+}

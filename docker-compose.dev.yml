@@ -1,0 +1,58 @@
+services:
+  caddy-primary:
+    image: caddy:2-alpine
+    container_name: cm-caddy-primary
+    restart: unless-stopped
+    ports:
+      - "2019:2019"
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./docker/dev/Caddyfile.primary:/etc/caddy/Caddyfile:ro
+      - caddy_primary_data:/data
+      - caddy_primary_config:/config
+    networks:
+      - caddy-dev-net
+
+  caddy-secondary:
+    image: caddy:2-alpine
+    container_name: cm-caddy-secondary
+    restart: unless-stopped
+    ports:
+      - "2020:2019"
+      - "8081:80"
+      - "8444:443"
+    volumes:
+      - ./docker/dev/Caddyfile.secondary:/etc/caddy/Caddyfile:ro
+      - caddy_secondary_data:/data
+      - caddy_secondary_config:/config
+    networks:
+      - caddy-dev-net
+
+  upstream-alpha:
+    image: hashicorp/http-echo:1.0
+    container_name: cm-upstream-alpha
+    command: ["-listen=:5678", "-text={\"service\":\"upstream-alpha\",\"status\":\"healthy\"}"]
+    ports:
+      - "5678:5678"
+    networks:
+      - caddy-dev-net
+
+  upstream-beta:
+    image: hashicorp/http-echo:1.0
+    container_name: cm-upstream-beta
+    command: ["-listen=:5679", "-text={\"service\":\"upstream-beta\",\"status\":\"healthy\"}"]
+    ports:
+      - "5679:5679"
+    networks:
+      - caddy-dev-net
+
+volumes:
+  caddy_primary_data:
+  caddy_primary_config:
+  caddy_secondary_data:
+  caddy_secondary_config:
+
+networks:
+  caddy-dev-net:
+    driver: bridge
